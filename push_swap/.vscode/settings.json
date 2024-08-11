@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "libft.h": "c",
+        "push_swap.h": "c",
+        "cctype": "c",
+        "ft_printf.h": "c",
+        "type_traits": "c"
+    }
+}
