@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:52:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/11 17:04:22 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/13 20:23:55 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 # include "../ft_printf/ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
 typedef struct s_stack_node
 {
 	int					nbr;
 	int					index;
-	int					push_cost;
+	int					cost;
+	bool				cheapest;
+	bool				above_median;
 	struct s_stack_node	*target_node;
 	struct s_stack_node	*next;
 }	t_stack_node;
@@ -58,5 +61,24 @@ void			rotate(t_stack_node **stack);
 void			free_stack(t_stack_node *stack);
 void			reverse(t_stack_node **stack);
 void			init_stack_b(t_stack_node **b);
+t_stack_node	*push_swap_algo(t_stack_node *sa, t_stack_node *sb, int size_a);
+t_stack_node	*find_smallest(t_stack_node *stack);
+int				stack_size(t_stack_node *a);
+t_stack_node	*find_biggest(t_stack_node *stack);
+int				sorted(t_stack_node *a);
+void			sort(t_stack_node *a, t_stack_node *b);
+void			init_node_a(t_stack_node **a, t_stack_node **b);
+void			move_a_to_b(t_stack_node **a, t_stack_node **b);
+t_stack_node	*set_target_nodes_a(t_stack_node *stack_a, t_stack_node *stack_b);
+void			init_node_b(t_stack_node **a, t_stack_node **b);
+void			move_b_to_a(t_stack_node **a, t_stack_node **b);
+t_stack_node	*set_target_nodes_b(t_stack_node *stack_a, t_stack_node *stack_b);
+void			bring_on_top(t_stack_node **stack, t_stack_node *desired_node, char stack_name);
+t_stack_node	*cost_analyst(t_stack_node *stack_a, t_stack_node *stack_b);
+t_stack_node	*get_cheapest(t_stack_node *stack);
+t_stack_node	*set_cheapest(t_stack_node *stack);
+void			current_index(t_stack_node *stack);
+int				stack_size(t_stack_node *a);
+t_stack_node	*tinysort(t_stack_node *a);
 
 #endif

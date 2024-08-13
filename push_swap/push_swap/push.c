@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:56:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/11 14:57:55 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/13 20:24:21 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,14 @@ void	fix_index(t_stack_node *stack)
 
 void	push(t_stack_node **dest, t_stack_node	**src)
 {
-	(*src)->next = (*dest);
+	t_stack_node	*temp;
+
+	if (!src || !(*src))
+		return ;
+	temp = *src;
+	*src = (*src)->next;
+	temp->next = *dest;
+	*dest = temp;
 	fix_index(*dest);
 	fix_index(*src);
 }

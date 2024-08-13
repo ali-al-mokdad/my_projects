@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:14:25 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/11 17:04:12 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:00:58 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	general_case(int *all_numb, int count)
 
 	init_stack_a(&a, all_numb, count);
 	init_stack_b(&b);
+	a = push_swap_algo(a, b, count);
 	free_stack(b);
 	free_stack(a);
 }
