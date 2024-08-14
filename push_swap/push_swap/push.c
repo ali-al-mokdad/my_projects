@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:56:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/13 20:24:21 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:15:08 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 void	fix_index(t_stack_node *stack)
 {
-	t_stack_node	*current;
 	int				i;
 
 	i = 0;
-	current = stack;
-	while (current)
+	while (stack)
 	{
-		current->index = i;
+		stack->index = i;
 		i++;
-		current = current->next;
+		stack = stack->next;
 	}
 }
 

@@ -6,11 +6,20 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 14:14:25 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/13 19:00:58 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:47:09 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+ void printList(t_stack_node *head) {
+    t_stack_node *current = head;
+    while (current != NULL) {
+        printf("%d -> ", current->nbr);
+        current = current->next;
+    }
+    printf("NULL\n");
+}
 
 void	general_case(int *all_numb, int count)
 {
@@ -20,8 +29,8 @@ void	general_case(int *all_numb, int count)
 
 	init_stack_a(&a, all_numb, count);
 	init_stack_b(&b);
+	// printList(a);
 	a = push_swap_algo(a, b, count);
-	free_stack(b);
 	free_stack(a);
 }
 
@@ -55,7 +64,6 @@ void	init_stack_a(t_stack_node **a, int	*all_numb, int count)
 
 void	init_stack_b(t_stack_node **b)
 {
-	*b = malloc(sizeof(t_stack_node));
-	(*b)->next = NULL;
+	(*b) = NULL;
 }
 

@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
+/*   push_algorithme.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/13 19:01:44 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/13 20:21:57 by aal-mokd         ###   ########.fr       */
+/*   Created: 2024/08/14 16:15:59 by aal-mokd          #+#    #+#             */
+/*   Updated: 2024/08/14 19:09:12 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stack_node	*get_cheapest(t_stack_node *stack)
+{
+	t_stack_node	*s;
+
+	s = stack;
+	while (s)
+	{
+		if (s->cheapest)
+			return (s);
+		s = s->next;
+	}
+	return (stack);
+}
 
 t_stack_node	*tinysort(t_stack_node *a)
 {
@@ -26,38 +40,17 @@ t_stack_node	*tinysort(t_stack_node *a)
 	return (a);
 }
 
-void	bring_on_top(t_stack_node **stack,
-t_stack_node *desired_node, char stack_name)
-{
-	while (*stack != desired_node)
-	{
-		if (desired_node->above_median)
-		{
-			if (stack_name == 'a')
-				ra(stack);
-			else
-				rb(stack);
-		}
-		else
-		{
-			if (stack_name == 'a')
-				rra(stack);
-			else
-				rrb(stack);
-		}
-	}
-}
-
 t_stack_node	*push_swap_algo(t_stack_node *a, t_stack_node *b, int size_a)
 {
 	if (size_a-- > 3 && !sorted(a))
 		pb(&a, &b);
 	if (size_a-- > 3 && !sorted(a))
 		pb(&a, &b);
-	while (size_a-- > 3 && !sorted(a))
+	while (size_a > 3 && !sorted(a))
 	{
 		init_node_a(&a, &b);
 		move_a_to_b(&a, &b);
+		size_a--;
 	}
 	a = tinysort(a);
 	while (b)
@@ -73,5 +66,6 @@ t_stack_node	*push_swap_algo(t_stack_node *a, t_stack_node *b, int size_a)
 		else
 			rra(&a);
 	}
+	free_stack(b);
 	return (a);
 }

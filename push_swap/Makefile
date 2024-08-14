@@ -6,7 +6,7 @@
 #    By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 18:14:53 by aal-mokd          #+#    #+#              #
-#    Updated: 2024/08/13 18:38:38 by aal-mokd         ###   ########.fr        #
+#    Updated: 2024/08/14 18:36:53 by aal-mokd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ PUSH_SWAP_NAME     = pushswap.a
 
 CC                 = gcc
 RM                 = rm -f
-CFLAGS             = -Wall -Wextra -Werror -Ift_printf -Ilft -Ipush_swap
+CFLAGS             = -Wall -Wextra -Werror -g -Ift_printf -Ilft -Ipush_swap
 
 all: ${PUSH_SWAP_NAME}
 
