@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:18:27 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/14 19:03:15 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:25:07 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,11 @@ int	sorted(t_stack_node *a)
 {
 	while (a != NULL)
 	{
-		if (a->nbr > a->next->nbr)
-			return (0);
+		if (a && a->next)
+		{
+			if (a->nbr > a->next->nbr)
+				return (0);
+		}
 		a = a->next;
 	}
 	return (1);
@@ -86,7 +89,6 @@ t_stack_node	*cost_analyst(t_stack_node *stack_a, t_stack_node *stack_b)
 	s = stack_a;
 	size_a = stack_size(stack_a);
 	size_b = stack_size(stack_b);
-	// ft_printf("helo\n");
 	while (s)
 	{
 		s->cost = s->index;

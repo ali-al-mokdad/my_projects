@@ -6,56 +6,42 @@
 #    By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/18 18:14:53 by aal-mokd          #+#    #+#              #
-#    Updated: 2024/08/14 18:36:53 by aal-mokd         ###   ########.fr        #
+#    Updated: 2024/08/15 18:20:55 by aal-mokd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT_SOURCES      = libft/ft_memset.c libft/ft_bzero.c libft/ft_memcpy.c libft/ft_memmove.c libft/ft_memchr.c libft/ft_memcmp.c libft/ft_strlen.c libft/ft_isalpha.c libft/ft_isdigit.c libft/ft_isalnum.c \
-                     libft/ft_isascii.c libft/ft_isprint.c libft/ft_toupper.c libft/ft_tolower.c libft/ft_strchr.c libft/ft_strrchr.c libft/ft_strncmp.c libft/ft_strlcpy.c libft/ft_strlcat.c libft/ft_strnstr.c libft/ft_atoi.c libft/ft_calloc.c \
-                     libft/ft_strdup.c libft/ft_substr.c libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_split.c libft/ft_itoa.c libft/ft_strmapi.c libft/ft_striteri.c libft/ft_putchar_fd.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c libft/ft_putnbr_fd.c \
+NAME = push_swap
 
-FT_PRINTF_SOURCES  = ft_printf/ft_printf.c ft_printf/ft_printfcom.c ft_printf/ft_printfcom2.c
+LIB = ft_printf/libftprintf.a
 
-PUSH_SWAP_SOURCES  = push_swap/*.c
+SRCS  = src/main.c src/push_algorithme.c src/push.c src/push_swap.c src/push_swap_next1.c src/push_swap_utils0_atoi.c src/push_swap_utils1_s_p.c src/push_swap_utils2_rotate.c src/push_swap_utils3_revers_rotate.c src/push_utils.c src/rotate.c src/sort_sa.c src/sort_sb.c
 
-SOURCES            = ${LIBFT_SOURCES} ${FT_PRINTF_SOURCES} ${PUSH_SWAP_SOURCES}
+OBJS = ${SRCS:.c=.o}
 
-INCLUDES           = ft_printf/ft_printf.h libft/libft.h push_swap/push_swap.h
 
-LIBFT_OBJS         = ${LIBFT_SOURCES:.c=.o}
-PRINTF_OBJS        = ${FT_PRINTF_SOURCES:.c=.o}
-PUSH_SWAP_OBJS     = ${PUSH_SWAP_SOURCES:.c=.o}
+CC					= gcc
+RM					= rm -f
+CFLAGS				= -Wall -Wextra -Werror
 
-LIBFT_NAME         = libft.a
-PRINTF_NAME        = libftprintf.a
-PUSH_SWAP_NAME     = pushswap.a
+all: $(NAME) 
 
-CC                 = gcc
-RM                 = rm -f
-CFLAGS             = -Wall -Wextra -Werror -g -Ift_printf -Ilft -Ipush_swap
+$(NAME):	$(OBJS) $(LIB)
+			$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB)
 
-all: ${PUSH_SWAP_NAME}
+$(LIB):
+			@make -C ./ft_printf
 
-${LIBFT_NAME}: ${LIBFT_OBJS}
-	ar rcs ${LIBFT_NAME} ${LIBFT_OBJS}
-
-${PRINTF_NAME}: ${LIBFT_NAME} ${PRINTF_OBJS}
-	ar rcs ${PRINTF_NAME} ${PRINTF_OBJS}
-
-${PUSH_SWAP_NAME}: ${LIBFT_NAME} ${PRINTF_NAME} ${PUSH_SWAP_OBJS}
-	ar rcs ${PUSH_SWAP_NAME} ${PUSH_SWAP_OBJS}
-
-%.o: %.c ${INCLUDES}
+.c.o:
 	${CC} ${CFLAGS} -c $< -o $@
 
-clean:
-	${RM} ${LIBFT_OBJS} ${PRINTF_OBJS} ${PUSH_SWAP_OBJS}
+clean:	
+		@make clean -C ./ft_printf
+		${RM} ${OBJS}
 
 fclean: clean
-	${RM} ${LIBFT_NAME} ${PRINTF_NAME} ${PUSH_SWAP_NAME}
+		${RM} ${LIB}
+		${RM} ${NAME}
 
 re: fclean all
 
 .PHONY: all clean fclean re
-
-

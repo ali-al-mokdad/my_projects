@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_atoi.c                                   :+:      :+:    :+:   */
+/*   push_swap_utils0_atoi.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:39:50 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/05 15:06:15 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:10:48 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	parse_number(const char **p, int *result, int *sign)
 
 	*result = 0;
 	*sign = 1;
-
 	if (**p == '-')
 	{
 		*sign = -1;
@@ -65,14 +64,14 @@ int	parse_number(const char **p, int *result, int *sign)
 	while (ft_isdigit(**p))
 	{
 		if (*result > (scan - (**p - '0')) / 10)
-			return (ft_printf("ERROR\n"), 1);
+			return (1);
 		*result = *result * 10 + (**p - '0');
 		(*p)++;
 	}
 	return (0);
 }
 
-void	parse_numbers(const char *nptr, int *array)
+int	parse_numbers(const char *nptr, int *array)
 {
 	int			result;
 	int			sign;
@@ -90,10 +89,11 @@ void	parse_numbers(const char *nptr, int *array)
 		if (parse_number(&p, &result, &sign))
 		{
 			free (array);
-			exit (-1);
+			return (1);
 		}
 		*ptr++ = result * sign;
 	}
+	return (0);
 }
 
 int	*push_swap_atoi(const char *nptr, int *count)
@@ -107,29 +107,8 @@ int	*push_swap_atoi(const char *nptr, int *count)
 	array = (int *)malloc((num_count + 1) * sizeof(int));
 	if (!array)
 		return (NULL);
-	parse_numbers(nptr, array);
+	if (parse_numbers(nptr, array))
+		return (NULL);
 	*count = num_count;
 	return (array);
 }
-// int main(void)
-// {
-//     const char *text = "   \t\n 123 -456 789 ";
-//     int *array;
-//     int count;
-//     int i;
-
-//     array = push_swap_atoi(text, &count);
-//     if (!array)
-//     {
-//         printf("Memory allocation failed\n");
-//         return 1;
-//     }
-
-//     for (i = 0; i < count; i++)
-//     {
-//         printf("%d\n", array[i]);
-//     }
-
-//     free(array); // Free allocated memory
-//     return 0;
-// }

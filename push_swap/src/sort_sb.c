@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/13 19:18:28 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/13 19:54:58 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:16:44 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,21 @@ void	init_node_b(t_stack_node **a, t_stack_node **b)
 	current_index(*a);
 	current_index(*b);
 	*b = set_target_nodes_b(*a, *b);
+}
+
+t_stack_node	*find_smallest(t_stack_node *stack)
+{
+	t_stack_node	*min;
+	t_stack_node	*temp;
+
+	min = stack;
+	temp = stack;
+	while (stack != NULL)
+	{
+		if (min->nbr > stack->nbr)
+			min = stack;
+		stack = stack->next;
+	}
+	stack = temp;
+	return (min);
 }

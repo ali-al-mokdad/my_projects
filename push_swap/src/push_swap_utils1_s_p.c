@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:24:18 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/13 20:32:00 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/15 16:40:23 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	ss(t_stack_node **a, t_stack_node **b)
 
 void	pa(t_stack_node **a, t_stack_node **b)
 {
-	push(b, a);
+	push(a, b);
 	ft_printf("pa\n");
 }
 
 void	pb(t_stack_node **b, t_stack_node **a)
 {
-	push(a, b);
+	push(b, a);
 	ft_printf("pb\n");
 }

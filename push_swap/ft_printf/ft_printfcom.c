@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include	"ft_printf.h"
-#include	"../libft/libft.h"
+#include	"libft/libft.h"
 
 int	print_d(int num)
 {

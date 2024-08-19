@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 16:15:59 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/14 19:09:12 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:38:33 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ t_stack_node	*tinysort(t_stack_node *a)
 t_stack_node	*push_swap_algo(t_stack_node *a, t_stack_node *b, int size_a)
 {
 	if (size_a-- > 3 && !sorted(a))
-		pb(&a, &b);
+		pb(&b, &a);
 	if (size_a-- > 3 && !sorted(a))
-		pb(&a, &b);
+		pb(&b, &a);
 	while (size_a > 3 && !sorted(a))
 	{
 		init_node_a(&a, &b);
@@ -66,6 +66,5 @@ t_stack_node	*push_swap_algo(t_stack_node *a, t_stack_node *b, int size_a)
 		else
 			rra(&a);
 	}
-	free_stack(b);
-	return (a);
+	return (free_stack(b), a);
 }

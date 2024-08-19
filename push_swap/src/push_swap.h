@@ -6,14 +6,13 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:52:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/14 19:00:32 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:53:59 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define    PUSH_SWAP_H
 
-# include "../libft/libft.h"
 # include "../ft_printf/ft_printf.h"
 # include <unistd.h>
 # include <stdlib.h>
@@ -36,7 +35,7 @@ int				*push_swap_atoi(const char *nptr, int *count);
 int				ft_issigne(int c);
 int				count_numbers(const char *nptr);
 int				parse_number(const char **p, int *result, int *sign);
-void			parse_numbers(const char *nptr, int *array);
+int				parse_numbers(const char *nptr, int *array);
 int				check_double(int *all_numb, int count);
 void			push_swapcases(int *all_numb, int count);
 void			general_case(int *all_numb, int count);
@@ -83,6 +82,7 @@ t_stack_node	*set_cheapest(t_stack_node *stack);
 void			current_index(t_stack_node *stack);
 int				stack_size(t_stack_node *a);
 t_stack_node	*tinysort(t_stack_node *a);
-void printList(t_stack_node *head);
+void			printList(t_stack_node *head);
+t_stack_node	*remove_top(t_stack_node **stack);
 
 #endif

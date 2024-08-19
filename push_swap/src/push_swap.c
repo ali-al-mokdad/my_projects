@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:52:58 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/10 13:59:33 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/19 12:55:53 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ void	push_swapcases(int *all_numb, int count)
 {
 	if (count == 1)
 		return ;
-	if (count == 2)
+	else if (count == 2)
 		case2(all_numb);
-	if (count == 3)
+	else if (count == 3)
 		case3(all_numb);
 	else
 		general_case(all_numb, count);
@@ -96,13 +96,13 @@ void	push_swap(char *inputs)
 	all_numb = push_swap_atoi(inputs, &count);
 	if (all_numb == NULL || count == 0)
 	{
-		ft_printf("ERROR\n");
+		ft_printf("Error\n");
 		free(all_numb);
 		return ;
 	}
 	if (check_double(all_numb, count) == 1)
 	{
-		ft_printf("ERROR\n");
+		ft_printf("Error\n");
 		free(all_numb);
 		return ;
 	}

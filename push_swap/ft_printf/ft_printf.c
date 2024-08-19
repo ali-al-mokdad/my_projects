@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include	"../libft/libft.h"
+#include	"libft/libft.h"
 
 void	check_print(char format, va_list args, int *count)
 {
