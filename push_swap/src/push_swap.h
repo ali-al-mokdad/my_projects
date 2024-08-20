@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 17:52:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/15 17:53:59 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:20:43 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ void			general_case(int *all_numb, int count);
 void			case2(int *all_numb);
 void			case3(int *all_numb);
 void			init_stack_a(t_stack_node **a, int	*all_numb, int count);
-void			sa(t_stack_node **a);
-void			sb(t_stack_node **b);
-void			ss(t_stack_node **a, t_stack_node **b);
-void			pb(t_stack_node **b, t_stack_node **a);
-void			pa(t_stack_node **a, t_stack_node **b);
-void			ra(t_stack_node **a);
-void			rb(t_stack_node **b);
-void			rr(t_stack_node **a, t_stack_node **b);
-void			rra(t_stack_node **a);
-void			rrb(t_stack_node **b);
-void			rrr(t_stack_node **a, t_stack_node **b);
+void			sa(t_stack_node **a, int flag);
+void			sb(t_stack_node **b, int flag);
+void			ss(t_stack_node **a, t_stack_node **b, int flag);
+void			pb(t_stack_node **b, t_stack_node **a, int flag);
+void			pa(t_stack_node **a, t_stack_node **b, int flag);
+void			ra(t_stack_node **a, int flag);
+void			rb(t_stack_node **b, int flag);
+void			rr(t_stack_node **a, t_stack_node **b, int flag);
+void			rra(t_stack_node **a, int flag);
+void			rrb(t_stack_node **b, int flag);
+void			rrr(t_stack_node **a, t_stack_node **b, int flag);
 void			push(t_stack_node **dest, t_stack_node	**src);
 void			fix_index(t_stack_node *stack);
 t_stack_node	*find_last(t_stack_node	*stack);

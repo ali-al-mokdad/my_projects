@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:26:19 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/11 16:12:53 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:51:03 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,24 @@ void	reverse(t_stack_node **stack)
 	fix_index(*stack);
 }
 
-void	rra(t_stack_node **a)
+void	rra(t_stack_node **a, int flag)
 {
 	reverse(a);
-	ft_printf("rra\n");
+	if (flag)
+		ft_printf("rra\n");
 }
 
-void	rrb(t_stack_node **b)
+void	rrb(t_stack_node **b, int flag)
 {
 	reverse(b);
-	ft_printf("rrb\n");
+	if (flag)
+		ft_printf("rrb\n");
 }
 
-void	rrr(t_stack_node **a, t_stack_node **b)
+void	rrr(t_stack_node **a, t_stack_node **b, int flag)
 {
 	reverse(a);
 	reverse(b);
-	ft_printf("rrr\n");
+	if (flag)
+		ft_printf("rrr\n");
 }

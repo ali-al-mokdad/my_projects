@@ -6,6 +6,7 @@
         "ft_printf.h": "c",
         "type_traits": "c",
         "limits": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "checker.h": "c"
     }
 }

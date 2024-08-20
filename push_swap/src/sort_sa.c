@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:19:58 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/15 17:42:59 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:52:47 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ t_stack_node *desired_node, char stack_name)
 		if (desired_node->above_median)
 		{
 			if (stack_name == 'a')
-				ra(stack);
+				ra(stack, 1);
 			else
-				rb(stack);
+				rb(stack, 1);
 		}
 		else
 		{
 			if (stack_name == 'a')
-				rra(stack);
+				rra(stack, 1);
 			else
-				rrb(stack);
+				rrb(stack, 1);
 		}
 	}
 }
@@ -98,7 +98,7 @@ void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 			&& cheapest_node->target_node->above_median)
 		{
 			while (*b != cheapest_node->target_node && *a != cheapest_node)
-				rr(a, b);
+				rr(a, b, 1);
 			current_index(*a);
 			current_index(*b);
 		}
@@ -107,11 +107,11 @@ void	move_a_to_b(t_stack_node **a, t_stack_node **b)
 		&& !cheapest_node->target_node->above_median)
 	{
 		while (*b != cheapest_node->target_node && *a != cheapest_node)
-			rrr(a, b);
+			rrr(a, b, 1);
 		current_index(*a);
 		current_index(*b);
 	}
 	bring_on_top(a, cheapest_node, 'a');
 	bring_on_top(b, cheapest_node->target_node, 'b');
-	pb(b, a);
+	pb(b, a, 1);
 }

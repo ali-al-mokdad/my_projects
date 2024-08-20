@@ -6,27 +6,30 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 16:26:17 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/11 15:49:25 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/19 14:50:43 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ra(t_stack_node **a)
+void	ra(t_stack_node **a, int flag)
 {
 	rotate(a);
-	ft_printf("ra\n");
+	if (flag)
+		ft_printf("ra\n");
 }
 
-void	rb(t_stack_node **b)
+void	rb(t_stack_node **b, int flag)
 {
 	rotate(b);
-	ft_printf("rb\n");
+	if (flag)
+		ft_printf("rb\n");
 }
 
-void	rr(t_stack_node **a, t_stack_node **b)
+void	rr(t_stack_node **a, t_stack_node **b, int flag)
 {
 	rotate(a);
 	rotate(b);
-	ft_printf("rr\n");
+	if (flag)
+		ft_printf("rr\n");
 }
