@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 13:47:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/23 19:20:51 by aal-mokd         ###   ########.fr       */
+/*   Created: 2024/06/19 12:28:34 by aal-mokd          #+#    #+#             */
+/*   Updated: 2024/06/19 13:02:20 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define    PIPEX_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdio.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include "./lib/ft_printf/ft_printf.h"
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+{
+	unsigned int		i;
 
-void	execute(char *argv, char **envp);
-void	error(void);
-
-#endif
+	i = 0;
+	while (s[i] != '\0')
+	{
+		(*f)(i, &s[i]);
+		i++;
+	}
+}

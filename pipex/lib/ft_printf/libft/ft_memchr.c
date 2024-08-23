@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 13:47:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/23 19:20:51 by aal-mokd         ###   ########.fr       */
+/*   Created: 2024/06/15 11:41:46 by aal-mokd          #+#    #+#             */
+/*   Updated: 2024/06/15 12:06:13 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define    PIPEX_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdio.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include "./lib/ft_printf/ft_printf.h"
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t		i;
+	const char	*src;
 
-void	execute(char *argv, char **envp);
-void	error(void);
-
-#endif
+	src = (const char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (src[i] == (const char )c)
+			return ((char *)&src[i]);
+		i++;
+	}
+	return (NULL);
+}

@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 13:47:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/23 19:20:51 by aal-mokd         ###   ########.fr       */
+/*   Created: 2024/04/22 18:07:52 by aal-mokd          #+#    #+#             */
+/*   Updated: 2024/06/15 09:53:11 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define    PIPEX_H
+#include	"libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdio.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include "./lib/ft_printf/ft_printf.h"
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	unsigned int	i;
+	unsigned int	count;
 
-void	execute(char *argv, char **envp);
-void	error(void);
-
-#endif
+	i = 0;
+	count = 0;
+	while (src[count])
+		count++;
+	if (size < 1)
+		return (count);
+	while (src[i] && i < size - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (count);
+}

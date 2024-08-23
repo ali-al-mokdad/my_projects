@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 13:47:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/23 19:20:51 by aal-mokd         ###   ########.fr       */
+/*   Created: 2024/06/15 16:06:00 by aal-mokd          #+#    #+#             */
+/*   Updated: 2024/06/19 14:03:48 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define    PIPEX_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdio.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include "./lib/ft_printf/ft_printf.h"
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*temp;
 
-void	execute(char *argv, char **envp);
-void	error(void);
-
-#endif
+	if (nmemb == 0 || size == 0)
+		return (malloc(1));
+	if (nmemb > ((size_t)- 1) / size)
+		return (NULL);
+	temp = malloc(nmemb * size);
+	if (temp == NULL)
+		return (NULL);
+	ft_memset (temp, 0, nmemb * size);
+	return (temp);
+}

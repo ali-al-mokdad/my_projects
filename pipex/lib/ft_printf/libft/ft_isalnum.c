@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/19 13:47:11 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/23 19:20:51 by aal-mokd         ###   ########.fr       */
+/*   Created: 2024/06/14 10:55:07 by aal-mokd          #+#    #+#             */
+/*   Updated: 2024/06/15 09:53:41 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define    PIPEX_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <string.h>
-# include <stdio.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include "./lib/ft_printf/ft_printf.h"
-
-void	execute(char *argv, char **envp);
-void	error(void);
-
-#endif
+int	ft_isalnum(int c)
+{
+	if (ft_isdigit(c) == 1 || ft_isalpha(c) == 1)
+		return (1);
+	return (0);
+}

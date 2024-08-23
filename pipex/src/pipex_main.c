@@ -6,83 +6,62 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 16:50:18 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/20 17:14:47 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:29:31 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../pipex.h"
 
-void iprsreturnerror(int pipefd)
+void	child_process(int *fd, char **argv, char **envp)
 {
-	if (pipe(pipefd) == -1) {
-        perror("pipe");
-        exit(EXIT_FAILURE);
-    }
+	int	file;
 
-    pid = fork();
-    if (pid == -1) {
-        perror("fork");
-        exit(EXIT_FAILURE);
-    }
-
-    if (pid == 0) {
-        // Child process
-        close(pipefd[1]);  // Close the write end
-        dup2(pipefd[0], STDIN_FILENO);  // Redirect stdin to the read end of the pipe
-        close(pipefd[0]);
-
-        execlp("cat", "cat", NULL);  // Example command
-        perror("execlp");
-        exit(EXIT_FAILURE);
-    } else {
-        // Parent process
-        close(pipefd[0]);  // Close the read end
-        dup2(pipefd[1], STDOUT_FILENO);  // Redirect stdout to the write end of the pipe
-        close(pipefd[1]);
-
-        execlp("ls", "ls", NULL);  // Example command
-        perror("execlp");
-        exit(EXIT_FAILURE);
-    }
+	file = open(argv[1], O_RDONLY, 0777);
+	if (file == -1)
+	{
+		perror("Error");
+		exit(-1);
+	}
+	dup2(fd[1], STDOUT_FILENO);
+	dup2(file, STDIN_FILENO);
+	close(fd[0]);
+	execute(argv[2], envp);
 }
 
-int main(int argc, char *argv[])
-{	
-	int	i;
-	int	pipefd[2];
-	int	fd_in;
+void	parent_process(int *fd, char **argv, char **envp)
+{
+	int	file;
 
-	if (argc < 4)
+	file = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (file == -1)
 	{
-		fprintf(stderr, "Usage: %s <cmd1> <cmd2> ... <cmdN>\n", argv[0]);
-		return (1);
+		perror("Error");
+		exit(-1);
 	}
-	fd_in = 0;
-	i = 1;
-	while (i < argc - 1)
-	{
-		pipe(pipefd);
+	dup2(fd[0], STDIN_FILENO);
+	dup2(file, STDOUT_FILENO);
+	close(fd[1]);
+	execute(argv[3], envp);
+}
 
-		if (fork() == 0)
-		{
-			dup2(fd_in, 0);
-			if (i < argc - 2)
-				dup2(pipefd[1], 1);
-			close(pipefd[0]);
-			execvp(argv[i], &argv[i]);
-			perror("execvp");
-			exit(1);
-		}
-		else
-		{
-			wait(NULL);
-			close(pipefd[1]);
-			fd_in = pipefd[0];
-			i++;
-		}
+int	main(int argc, char **argv, char **envp)
+{
+	int	fd[2];
+	int	pid;
+
+	if (argc != 5)
+		return (perror("Error"), 0);
+	else
+	{
+		if (pipe(fd) == -1)
+			return (perror("Error"), 0);
+		pid = fork();
+		if (pid == -1)
+			return (perror("Error"), 0);
+		if (pid == 0)
+			child_process(fd, argv, envp);
+		wait(NULL);
+		parent_process(fd, argv, envp);
 	}
-	dup2(fd_in, 0);
-	execvp(argv[i], &argv[i]);
-	perror("execvp");
-	return (1);
+	return (0);
 }
