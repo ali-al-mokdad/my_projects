@@ -6,7 +6,7 @@
 /*   By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 09:32:35 by aal-mokd          #+#    #+#             */
-/*   Updated: 2024/08/02 16:33:16 by aal-mokd         ###   ########.fr       */
+/*   Updated: 2024/08/31 18:06:55 by aal-mokd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 int		ft_isspace(int c);
-int	ft_strcmp(char *s1, char *s2);
+int 	ft_strcmp(char *s1, char *s2);
 
 #endif

@@ -1,56 +1,56 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: aal-mokd <aal-mokd@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/18 18:14:53 by aal-mokd          #+#    #+#              #
-#    Updated: 2024/08/23 17:03:58 by aal-mokd         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = fdf
 
-NAME = pipex
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I./mlx
+LDFLAGS = -L./mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 
-LIB = lib/ft_printf/libftprintf.a
-
-SRCS  = src/pipex_main.c src/pipex_utils.c
-
-pipex_BONUS = 
+GET_NEXT_LINE_SRCS = ./lib/get_next_line/get_next_line.c ./lib/get_next_line/get_next_line_utils.c
+SRCS = ${GET_NEXT_LINE_SRCS} src/main.c src/fdf_utility.c
 
 OBJS = ${SRCS:.c=.o}
-BONUS_OBJ = $(pipex_BONUS:.c=.o)
 
+ifeq ($(shell uname), Linux)
+    INCLUDES = -I/usr/include -Imlx
+else
+    INCLUDES = -I/opt/X11/include -Imlx
+endif
 
-CC					= gcc
-RM					= rm -f
-CFLAGS				= -Wall -Wextra -Werror
+MLX_DIR = ./mlx
+MLX_LIB = $(MLX_DIR)/libmlx_$(shell uname).a
+ifeq ($(shell uname), Linux)
+    MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
+else
+    MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
+endif
 
-all: $(NAME) 
+LIBFT_DIR = ./lib/ft_printf
+LIBFT_LIB = $(LIBFT_DIR)/libftprintf.a
 
-bonus: $(BONUS_OBJ)
-	$(CC) $(CFLAGS) $(BONUS_OBJ) $(LIB)  -o checker
+all: $(LIBFT_LIB) $(NAME)
 
-
-$(NAME):	$(OBJS) $(LIB)
-			$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LIB)
-
-$(LIB):
-			@make -C ./lib/ft_printf
-
+# Compile .c to .o
 .c.o:
-	${CC} ${CFLAGS} -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-clean:	
-		@make clean -C ./lib/ft_printf
-		${RM} ${OBJS}
-		${RM} $(BONUS_OBJ)
+# Link object files to create the final executable
+$(NAME): $(OBJS) $(LIBFT_LIB) $(MLX_LIB)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) $(LIBFT_LIB) $(LDFLAGS)
+
+# Build the libftprintf library
+$(LIBFT_LIB):
+	@make -C $(LIBFT_DIR)
+
+# Build the mlx library
+$(MLX_LIB):
+	@make -C $(MLX_DIR)
+
+clean:
+	rm -f $(OBJS)
 
 fclean: clean
-		${RM} ${LIB}
-		${RM} ${NAME}
-		rm -rf checker
+	rm -f $(NAME)
+	rm -f $(LIBFT_LIB)
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re
