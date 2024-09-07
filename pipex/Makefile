@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -I./mlx
 LDFLAGS = -L./mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 
 GET_NEXT_LINE_SRCS = ./lib/get_next_line/get_next_line.c ./lib/get_next_line/get_next_line_utils.c
-SRCS = ${GET_NEXT_LINE_SRCS} src/main.c src/fdf_utility.c
+SRCS = ${GET_NEXT_LINE_SRCS} src/main.c src/fdf_utility1.c src/fdf_utility2.c
 
 OBJS = ${SRCS:.c=.o}
 

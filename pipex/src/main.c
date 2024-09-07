@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 	mlx_hook(vars->win, ButtonPress, ButtonPressMask, handle_mouse_click, vars);
 	mlx_hook(vars->win, DestroyNotify, StructureNotifyMask,
 		handle_destroy_notify, vars);
-//	mlx_expose_hook(vars->win, draw_map, vars);
+	mlx_expose_hook(vars->win, draw_map, vars);
 	mlx_loop(vars->mlx);
 	free_structs(vars);
 }
