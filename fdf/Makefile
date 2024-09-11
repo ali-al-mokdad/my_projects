@@ -1,11 +1,11 @@
 NAME = fdf
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I./mlx
+CFLAGS = -Wall -Wextra -Werror -g -I./mlx
 LDFLAGS = -L./mlx -lmlx -L/usr/lib/X11 -lXext -lX11 -lm
 
 GET_NEXT_LINE_SRCS = ./lib/get_next_line/get_next_line.c ./lib/get_next_line/get_next_line_utils.c
-SRCS = ${GET_NEXT_LINE_SRCS} src/main.c src/fdf_utility1.c src/fdf_utility2.c
+SRCS = ${GET_NEXT_LINE_SRCS} src/main.c src/fdf_u1.c src/fdf_u2.c src/fdf_u3.c src/fdf_u4.c
 
 OBJS = ${SRCS:.c=.o}
 
